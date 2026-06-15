@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Target, TrendingUp, AlertCircle } from 'lucide-react';
 
 const GRADES = { 'O': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'P': 4, 'F': 0 };
@@ -8,6 +8,20 @@ const GRADES = { 'O': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'P': 4, 'F':
 export default function TargetTracker({ semesters, targetCgpa, onTargetChange }) {
   const [simulatedGrade, setSimulatedGrade] = useState('A');
   const [simulatedCredits, setSimulatedCredits] = useState(20);
+
+  // Load saved preferences on mount
+  useEffect(() => {
+    const savedGrade = localStorage.getItem('simulatedGrade');
+    const savedCredits = localStorage.getItem('simulatedCredits');
+    if (savedGrade) setSimulatedGrade(savedGrade);
+    if (savedCredits) setSimulatedCredits(parseInt(savedCredits, 10));
+  }, []);
+
+  // Save preferences when they change
+  useEffect(() => {
+    localStorage.setItem('simulatedGrade', simulatedGrade);
+    localStorage.setItem('simulatedCredits', simulatedCredits);
+  }, [simulatedGrade, simulatedCredits]);
 
   // Calculate current totals
   let totalPoints = 0;
