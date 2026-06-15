@@ -22,21 +22,7 @@ export default function Home() {
       setLoading(false);
     });
 
-    // 2. Listen for auth changes (login/logout events)
-    const { data } = insforge.auth.onAuthStateChange((_event, session) => {
-      if (session && session.user) {
-        setSession({ user: session.user });
-      } else {
-        setSession(null);
-      }
-      setLoading(false);
-    });
 
-    return () => {
-      if (data && data.subscription) {
-        data.subscription.unsubscribe();
-      }
-    };
   }, []);
 
   if (loading) {
