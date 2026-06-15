@@ -12,9 +12,9 @@ export default function Home() {
 
   useEffect(() => {
     // 1. Get initial session from local storage (Instantly)
-    insforge.auth.getSession().then(({ data, error }) => {
-      if (data && data.session) {
-        setSession(data.session);
+    insforge.auth.getCurrentUser().then(({ data, error }) => {
+      if (data && data.user) {
+        setSession({ user: data.user });
       }
       setLoading(false);
     }).catch((err) => {
@@ -24,7 +24,11 @@ export default function Home() {
 
     // 2. Listen for auth changes (login/logout events)
     const { data } = insforge.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+      if (session && session.user) {
+        setSession({ user: session.user });
+      } else {
+        setSession(null);
+      }
       setLoading(false);
     });
 
