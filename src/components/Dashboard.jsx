@@ -290,9 +290,6 @@ export default function Dashboard({ user }) {
         <button className="btn btn-secondary" onClick={handleExportPDF}>
           <Download size={18} /> Export Transcript
         </button>
-        <button className="btn btn-danger" style={{ marginLeft: 'auto' }} onClick={handleReset}>
-          <RotateCcw size={18} /> Reset All
-        </button>
       </div>
 
       {/* Semesters */}
@@ -307,6 +304,14 @@ export default function Dashboard({ user }) {
           />
         ))}
       </div>
+
+      {semesters.length > 0 && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid var(--border-color)' }}>
+          <button className="btn btn-danger" onClick={handleReset}>
+            <RotateCcw size={18} /> Reset All Data
+          </button>
+        </div>
+      )}
     </div>
   );
 }
