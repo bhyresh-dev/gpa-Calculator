@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
 
 const GRADES = {
   'O': 10,
@@ -15,6 +15,8 @@ const GRADES = {
 };
 
 export default function SemesterCard({ semester, index, onUpdate, onDelete }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const calculateSGPA = () => {
     let totalPoints = 0;
     let totalCredits = 0;
@@ -40,6 +42,7 @@ export default function SemesterCard({ semester, index, onUpdate, onDelete }) {
       ...semester,
       subjects: [...semester.subjects, { name: '', credits: 0, grade: '' }]
     });
+    setIsExpanded(true); // Auto expand when adding a subject
   };
 
   const removeSubject = (subIndex) => {
@@ -49,69 +52,78 @@ export default function SemesterCard({ semester, index, onUpdate, onDelete }) {
 
   return (
     <div className="glass-panel animate-fade-in" style={{ padding: '2rem', marginBottom: '2rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
-        <h2 style={{ fontSize: '1.5rem', color: 'var(--text-primary)' }}>Semester {index + 1}</h2>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: isExpanded ? '1px solid var(--border-color)' : 'none', paddingBottom: isExpanded ? '1rem' : '0', marginBottom: isExpanded ? '1.5rem' : '0', transition: 'all 0.3s ease' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }} onClick={() => setIsExpanded(!isExpanded)}>
+          <button className="btn" style={{ padding: '0.4rem', background: 'transparent', border: '1px solid var(--border-color)', color: 'var(--text-secondary)' }}>
+            {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+          </button>
+          <h2 style={{ fontSize: '1.5rem', color: 'var(--text-primary)', margin: 0 }}>Semester {index + 1}</h2>
+        </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <div style={{ background: 'rgba(59, 130, 246, 0.1)', border: '1px solid var(--accent-primary)', color: 'var(--accent-primary)', padding: '0.5rem 1rem', borderRadius: 'var(--radius-md)', fontWeight: 'bold', fontFamily: 'var(--font-mono)' }}>
             SGPA: {calculateSGPA()}
           </div>
           {onDelete && (
-             <button onClick={() => onDelete(index)} className="btn btn-danger" style={{ padding: '0.5rem' }}>
+             <button onClick={(e) => { e.stopPropagation(); onDelete(index); }} className="btn btn-danger" style={{ padding: '0.5rem' }}>
                <Trash2 size={18} />
              </button>
           )}
         </div>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        {semester.subjects.map((sub, subIndex) => (
-          <div key={subIndex} className="subject-row">
-            <div className="input-group">
-              <label className="input-label">Subject Name</label>
-              <input 
-                type="text" 
-                className="input-field" 
-                placeholder="e.g. Data Structures" 
-                value={sub.name}
-                onChange={(e) => updateSubject(subIndex, 'name', e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <label className="input-label">Credits</label>
-              <input 
-                type="number" 
-                min="1" 
-                max="10" 
-                className="input-field" 
-                placeholder="0"
-                value={sub.credits || ''}
-                onChange={(e) => updateSubject(subIndex, 'credits', parseInt(e.target.value) || 0)}
-              />
-            </div>
-            <div className="input-group">
-              <label className="input-label">Grade</label>
-              <select 
-                className="input-field"
-                value={sub.grade}
-                onChange={(e) => updateSubject(subIndex, 'grade', e.target.value)}
-                style={{ appearance: 'none' }}
-              >
-                <option value="">Select</option>
-                {Object.entries(GRADES).map(([grade, points]) => (
-                  <option key={grade} value={grade}>{grade} ({points})</option>
-                ))}
-              </select>
-            </div>
-            <button className="btn btn-danger" onClick={() => removeSubject(subIndex)}>
-              <Trash2 size={18} />
-            </button>
+      {isExpanded && (
+        <div className="animate-fade-in">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {semester.subjects.map((sub, subIndex) => (
+              <div key={subIndex} className="subject-row">
+                <div className="input-group">
+                  <label className="input-label">Subject Name</label>
+                  <input 
+                    type="text" 
+                    className="input-field" 
+                    placeholder="e.g. Data Structures" 
+                    value={sub.name}
+                    onChange={(e) => updateSubject(subIndex, 'name', e.target.value)}
+                  />
+                </div>
+                <div className="input-group">
+                  <label className="input-label">Credits</label>
+                  <input 
+                    type="number" 
+                    min="1" 
+                    max="10" 
+                    className="input-field" 
+                    placeholder="0"
+                    value={sub.credits || ''}
+                    onChange={(e) => updateSubject(subIndex, 'credits', parseInt(e.target.value) || 0)}
+                  />
+                </div>
+                <div className="input-group">
+                  <label className="input-label">Grade</label>
+                  <select 
+                    className="input-field"
+                    value={sub.grade}
+                    onChange={(e) => updateSubject(subIndex, 'grade', e.target.value)}
+                    style={{ appearance: 'none' }}
+                  >
+                    <option value="">Select</option>
+                    {Object.entries(GRADES).map(([grade, points]) => (
+                      <option key={grade} value={grade}>{grade} ({points})</option>
+                    ))}
+                  </select>
+                </div>
+                <button className="btn btn-danger" onClick={() => removeSubject(subIndex)}>
+                  <Trash2 size={18} />
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      <button className="btn btn-secondary" onClick={addSubject} style={{ marginTop: '1.5rem', width: '100%', borderStyle: 'dashed' }}>
-        <Plus size={18} /> Add Subject
-      </button>
+          <button className="btn btn-secondary" onClick={addSubject} style={{ marginTop: '1.5rem', width: '100%', borderStyle: 'dashed' }}>
+            <Plus size={18} /> Add Subject
+          </button>
+        </div>
+      )}
     </div>
   );
 }
