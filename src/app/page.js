@@ -12,21 +12,27 @@ export default function Home() {
 
   useEffect(() => {
     // 1. Get initial session from local storage (Instantly)
-    insforge.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      // Add a slight artificial delay ONLY if there's no session to avoid flashing
-      // or to let the user play the game for a second if they want, but here we just
-      // clear loading immediately so it's blazing fast.
+    insforge.auth.getSession().then(({ data, error }) => {
+      if (data && data.session) {
+        setSession(data.session);
+      }
+      setLoading(false);
+    }).catch((err) => {
+      console.error("Auth session error:", err);
       setLoading(false);
     });
 
     // 2. Listen for auth changes (login/logout events)
-    const { data: { subscription } } = insforge.auth.onAuthStateChange((_event, session) => {
+    const { data } = insforge.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      if (data && data.subscription) {
+        data.subscription.unsubscribe();
+      }
+    };
   }, []);
 
   if (loading) {
