@@ -1,0 +1,854 @@
+[
+  {
+    "id": "TC001",
+    "title": "Register a new account and reach the dashboard",
+    "description": "A new user can create an account with email and password, complete verification, and land on the dashboard afterward.",
+    "category": "User Login & Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign up form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the full name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Enter a valid 6-digit verification code"
+      },
+      {
+        "type": "action",
+        "description": "Submit the verification form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the dashboard is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty academic record state is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Sign in with email and password and reach the dashboard",
+    "description": "A returning user can sign in with email and password and see the dashboard afterward.",
+    "category": "User Login & Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign in form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the dashboard is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the CGPA summary is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Add a semester with multiple subjects and save the updated CGPA",
+    "description": "A signed-in user can add semester subjects, save them, and see the CGPA summary update with synced data.",
+    "category": "Dashboard & CGPA Calculation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign in form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Add a semester"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the subject name field with a valid subject name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the credits field with a valid credit value"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid grade"
+      },
+      {
+        "type": "action",
+        "description": "Add another subject to the semester"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the second subject name field with a valid subject name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the second credits field with a valid credit value"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid grade for the second subject"
+      },
+      {
+        "type": "action",
+        "description": "Save the academic data"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the CGPA summary is updated"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the saved academic record is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Edit subject details and see the recalculated CGPA",
+    "description": "A signed-in user can update subject information in an existing semester, save changes, and see the CGPA recalculated.",
+    "category": "Dashboard & CGPA Calculation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign in form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Edit an existing subject name or grade in a semester"
+      },
+      {
+        "type": "action",
+        "description": "Save the academic data"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the CGPA summary is updated"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated subject details are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Delete an entire semester and confirm the dashboard updates",
+    "description": "A signed-in user can delete a semester and see the dashboard reflect the reduced academic record afterward.",
+    "category": "Dashboard & CGPA Calculation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign in form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Delete an existing semester"
+      },
+      {
+        "type": "action",
+        "description": "Save the academic data"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the semester is no longer displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the CGPA summary is updated"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "View grade distribution after signing in",
+    "description": "A returning user can sign in and see the grade distribution chart on the dashboard.",
+    "category": "Grade Distribution",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the dashboard is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grade distribution chart is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Remove a subject from a semester and save the change",
+    "description": "A signed-in user can delete a subject from a semester, save the change, and see the academic record update.",
+    "category": "Dashboard & CGPA Calculation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign in form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Remove a subject from an existing semester"
+      },
+      {
+        "type": "action",
+        "description": "Save the academic data"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the remaining academic record is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the CGPA summary is updated"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Refresh grade distribution after saving academic changes",
+    "description": "A signed-in user can add or update semester data and see the grade distribution chart update to reflect the new grade counts.",
+    "category": "Grade Distribution",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Add a semester with multiple subjects and grades"
+      },
+      {
+        "type": "action",
+        "description": "Save the academic record changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grade distribution chart is updated"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify updated grade breakdown details are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Track target CGPA progress with prediction inputs",
+    "description": "A signed-in user can enter target tracker inputs and see the prediction message and progress bar update.",
+    "category": "Target Tracker",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign in form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Enter a target CGPA"
+      },
+      {
+        "type": "action",
+        "description": "Select an expected grade"
+      },
+      {
+        "type": "action",
+        "description": "Enter credits per semester"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a prediction result is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the progress bar is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Export a print-ready transcript from the dashboard",
+    "description": "A signed-in user can export their academic history and open a print-ready transcript preview.",
+    "category": "PDF Transcript Export",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the transcript export action"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a print-ready transcript preview is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC011",
+    "title": "Reset all academic data and return to an empty state",
+    "description": "A signed-in user can clear all academic records and see the dashboard return to an empty state.",
+    "category": "Dashboard & CGPA Calculation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign in form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Reset all academic data"
+      },
+      {
+        "type": "action",
+        "description": "Confirm the reset action"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty academic record state is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the CGPA summary is cleared"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC012",
+    "title": "Export a transcript after adding semester data",
+    "description": "A signed-in user can add or update academic records and then export a transcript that reflects the saved history.",
+    "category": "PDF Transcript Export",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Add a semester with multiple subjects and grades"
+      },
+      {
+        "type": "action",
+        "description": "Save the academic record changes"
+      },
+      {
+        "type": "action",
+        "description": "Open the transcript export action"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a print-ready transcript preview is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify recorded academic history is included in the preview"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC013",
+    "title": "Update target tracker inputs and see the prediction change",
+    "description": "A signed-in user can adjust target tracker inputs and see the prediction result update accordingly.",
+    "category": "Target Tracker",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign in form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Enter a target CGPA"
+      },
+      {
+        "type": "action",
+        "description": "Select an expected grade"
+      },
+      {
+        "type": "action",
+        "description": "Enter credits per semester"
+      },
+      {
+        "type": "action",
+        "description": "Change the expected grade"
+      },
+      {
+        "type": "action",
+        "description": "Change credits per semester"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the prediction result is updated"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the progress bar is updated"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC014",
+    "title": "Reveal and hide the password while signing in",
+    "description": "A user can toggle password visibility on the authentication form and continue to sign in afterward.",
+    "category": "User Login & Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign in form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Toggle password visibility on"
+      },
+      {
+        "type": "action",
+        "description": "Toggle password visibility off"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the dashboard or verification screen is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC015",
+    "title": "Inspect a grade distribution slice",
+    "description": "A signed-in user can hover a grade segment and see tooltip details for that slice.",
+    "category": "Grade Distribution",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Hover over a slice in the grade distribution chart"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify tooltip details for the hovered grade slice are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC016",
+    "title": "Keep sign-up validation for a missing full name",
+    "description": "A user cannot submit sign up without providing a full name and should see a validation error.",
+    "category": "User Login & Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign up form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a full name validation error is displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC017",
+    "title": "Show a validation error for an invalid sign-in email",
+    "description": "A user entering an invalid email format on sign in should see validation feedback and remain on the authentication form.",
+    "category": "User Login & Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign in form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with an invalid email value"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an email validation error is displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC018",
+    "title": "Show a grade distribution empty state with no records",
+    "description": "A signed-in user with no recorded subjects sees an empty grade distribution state instead of chart data.",
+    "category": "Grade Distribution",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the dashboard is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state for grade distribution is displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC019",
+    "title": "Verify an incorrect or incomplete one-time code is rejected",
+    "description": "A user who reaches the verification screen and enters an invalid 6-digit code should see verification feedback and stay on the verification screen.",
+    "category": "User Login & Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the sign up form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the full name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the authentication form"
+      },
+      {
+        "type": "action",
+        "description": "Enter an invalid 6-digit verification code"
+      },
+      {
+        "type": "action",
+        "description": "Submit the verification form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a verification code error is displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC020",
+    "title": "View an empty transcript state with no academic history",
+    "description": "A signed-in user with no academic records sees an empty or minimal transcript state rather than saved semester history.",
+    "category": "PDF Transcript Export",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the transcript export action"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a print-ready transcript preview is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the transcript preview shows no recorded academic history"
+      }
+    ],
+    "priority": "Low"
+  }
+]

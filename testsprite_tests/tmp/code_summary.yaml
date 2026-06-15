@@ -1,0 +1,87 @@
+version: "2"
+type: frontend
+tech_stack:
+  - Next.js (App Router)
+  - React
+  - InsForge
+  - Vanilla CSS
+  - Recharts
+  - Lucide React
+routes:
+  - path: /
+    file: src/app/page.js
+    auth_required: false
+    description: Main landing/dashboard page which determines auth state and renders Login or Dashboard.
+features:
+  - name: User Login & Registration
+    description: Login with email/password, register with email/password, verify OTP, and Google OAuth.
+    files:
+      - src/components/Login.jsx
+      - src/lib/insforge.js
+    entry_route: /
+    user_interactions:
+      - Toggle between Sign In and Sign Up tabs
+      - Fill email and password input fields
+      - Fill full name (on Sign Up)
+      - Click Sign In / Create Account button
+      - Toggle password visibility
+      - Enter 6-digit OTP code on verification screen
+      - Click Verify Email button
+      - Click Resend Code
+      - Click Google Sign In button
+    api_calls:
+      - method: POST
+        endpoint: /api/auth/signUp
+      - method: POST
+        endpoint: /api/auth/signInWithPassword
+      - method: POST
+        endpoint: /api/auth/verifyEmail
+      - method: POST
+        endpoint: /api/auth/resendVerificationEmail
+    auth_required: false
+  - name: Dashboard & CGPA Calculation
+    description: Main dashboard displaying Cumulative GPA, performance chart, and syncing data to InsForge.
+    files:
+      - src/components/Dashboard.jsx
+      - src/components/SemesterCard.jsx
+      - src/lib/db.js
+    entry_route: /
+    user_interactions:
+      - View CGPA stat and line chart
+      - Click Add Semester
+      - Fill Subject Name, Credits, and Grade in SemesterCard
+      - Add or remove subjects from a semester
+      - Delete an entire semester
+      - Click Save Data button manually
+      - See auto-save sync indicator
+      - Click Reset All to clear data
+      - Click Sign Out
+      - Click Export Transcript to print PDF
+    api_calls:
+      - method: GET
+        endpoint: database.from('user_data').select()
+      - method: POST
+        endpoint: database.from('user_data').upsert()
+    auth_required: true
+  - name: Target Tracker
+    description: Predicts required credits to reach a target CGPA.
+    files:
+      - src/components/TargetTracker.jsx
+    entry_route: /
+    user_interactions:
+      - Enter Target CGPA
+      - Select Expected Grade
+      - Enter Credits/Sem
+      - View prediction message and progress bar
+    api_calls: []
+    auth_required: true
+  - name: Grade Distribution
+    description: Visualizes grade counts in a donut chart.
+    files:
+      - src/components/GradeDistribution.jsx
+    entry_route: /
+    user_interactions:
+      - Hover over pie chart slices to see tooltips
+    api_calls: []
+    auth_required: true
+known_limitations: []
