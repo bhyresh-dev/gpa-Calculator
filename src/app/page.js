@@ -39,7 +39,7 @@ export default function Home() {
     return <LoadingMiniGame />;
   }
 
-  if (!session) {
+  if (!session || !session.user) {
     return <Login />;
   }
 
