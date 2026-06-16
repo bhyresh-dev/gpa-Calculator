@@ -22,7 +22,6 @@ export default function Home() {
       setLoading(false);
     });
 
-
   }, []);
 
   if (loading) {
